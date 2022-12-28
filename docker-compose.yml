@@ -1,0 +1,15 @@
+version: "3"
+services:
+  proxy:
+    image: ubuntu/squid
+    ports:
+      - "3128:3128"
+    volumes:
+      - ./logs:/var/log/squid
+      - ./cache:/var/spool/squid
+      - ./squid.conf:/etc/squid/squid.conf
+    restart: always
+    env_file:
+      - ".env"
+    extra_hosts:
+      host.docker.internal: host-gateway # a bugfix just for linux users ;)
