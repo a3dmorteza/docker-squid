@@ -1,9 +1,10 @@
 version: "3"
 services:
   proxy:
-    image: sameersbn/squid:3.5.27-2
+    image: thelebster/docker-squid-simple-proxy
     ports:
-      - "3128:3128"
+      - ${PORT}:3128
+      - ${SSH_PORT}:22
     volumes:
       - ./logs:/var/log/squid
       - ./cache:/var/spool/squid
